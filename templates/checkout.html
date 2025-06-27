@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+#itemincart td, #itemincart th {
+  border: 1px solid #ddd;
+}
+
+#itemincart tr:hover {background-color: #c4c24c;}
+
+#itemincart th {
+  text-align: left;
+  background-color: rgb(121, 152, 59);
+  color: white;
+}
+</style>
+<div class="container" style="margin-top: 20px;">
+    <div class="row">
+        <div class="col-md-8">
+            <h3>YOUR CART</h3>
+            <table class="table" id="itemincart">
+                <thead>
+                    <tr>
+                        <th>SN</th>
+                        <th>ITEM</th>
+                        <th>QUANTITY</th>
+                        <th>PRICE</th>
+                        <th>TOTAL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cart_product in cart.cartproduct_set.all %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{cart_product.product.producttitle}}</td>
+                        <td>{{cart_product.quantity}}</td>
+                        <td>{{cart_product.rate}}</td>
+                        <td>{{cart_product.subtotal}}</td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <th colspan="4" class="text-right">TOTAL COST</th>
+                        <th>USD {{cart.total}}</th>
+                    </tr>
+                </tbody>
+            </table>
+            <a href="{% url 'ecomapp:mycart' %}" class="btn btn-sm btn-success">Want to update your cart ?</a>
+
+        </div>
+        <div class="col-md-4">
+            <h3>Fill the details for checkout ! </h3>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{form|crispy}}               
+                <button class="btn btn-info">PLACE ORDER</button>
+            </form>
+        </div>
+
+
+    </div>
+
+
+</div>
+{% endblock %}

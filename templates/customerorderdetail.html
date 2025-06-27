@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% block content %}
+<style>
+    .orderdetails{
+    margin-right: 10px; width: 200px;height: 30px;display: inline-block;text-align: center;
+}
+</style>
+<div class="container" style="margin-top: 20px;">
+
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <h3>ORDERED ITEM DETAIL </h3><hr>
+            <p><span class="font-weight-bold orderdetails btn-warning">STATUS </span> {{ord_obj.ostatus}}</p>
+            <p><span class="font-weight-bold orderdetails btn-warning">ORDERED ON  </span> {{ord_obj.created_at}}({{ord_obj.created_at|timesince}} ago)</p>
+            <p><span class="font-weight-bold orderdetails btn-warning">NAME</span>{{ord_obj.productorderedby}}</p>
+            <p><span class="font-weight-bold orderdetails btn-warning">EMAIL</span>{{ord_obj.email}}</p>
+            <p><span class="font-weight-bold orderdetails btn-warning">MOBILE</span>{{ord_obj.mobile}}</p>
+            <p><span class="font-weight-bold orderdetails btn-warning">DELIVERY ADDRESS </span>{{ord_obj.productshippingaddress}} </p>
+            <h4>Ordered Items</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Order Item</th>
+                        <th>Amount</th>
+                        <th>Ordered Timeframe</th>
+                        <th>Order Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cart_product in ord_obj.cart.cartproduct_set.all %}         
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td><a target="_blank" href="{% url 'ecomapp:productdetail' cart_product.product.productslug %}">{{cart_product.product.producttitle}}({{cart_product.product.id}})</a></td>
+                        <td>{{cart_product.rate}}</td>
+                        <td>{{cart_product.quantity}}</td>
+                        <td>{{cart_product.subtotal}}</td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <th colspan="4" class="text-right">TOTAL </th>
+                        <th>USD {{ord_obj.total|intcomma}}</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

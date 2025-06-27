@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Seearch results : <span class="text-info">{{request.GET.keyword}}</span></h3>
+            <hr>
+
+            {% for searchresult in results %}
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="{{searchresult.image.url}}" class="img-fluid" alt="">
+                </div>
+                <div class="col-md-9">
+                    <h4><a href="{% url 'ecomapp:productdetail' searchresult.productslug %}">{{searchresult.producttitle}}</a></h4>
+                    <p>{{searchresult.productdescription}}</p>
+                    <a href="{% url 'ecomapp:addtocart' searchresult.id %}" class="btn btn-sm btn-success">ADD TO CART</a>
+                </div>
+            </div>
+            {% endfor %}
+        
+        </div>
+        
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,42 @@
+ANUSHA PANTA
+
+
+python -m venv env
+.\env\Scripts\activate
+pip list --format=freeze > requirements.txt
+
+
+python -m venv env
+.\env\Scripts\activate
+pip list --format=freeze > requirements.txt
+
+python3 -m venv env
+source env\bin\activate
+source deactivate
+
+python3 -m pip install --upgrade pip
+
+pip3 install mysqlclient
+python3 manage.py makemigrations
+
+brew install mysql-client 
+pip3 install mysql  
+python3 -m pip install --upgrade pip
+
+python3 manage.py runserver
+pip3 install wheel
+
+brew install mysql-client pkg-config
+brew install mysql pkg-config
+
+
+brew services start mysql
+mysql -u root
+
+pip3 install mysqlclient==2.2.4 
+
+python3 manage.py makemigrations
+python manage.py migrate       
+
+
+ python manage.py runserver

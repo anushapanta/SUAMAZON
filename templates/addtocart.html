@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container"style="margin-top:20px;">
+    <h2 style="text-align: center;">Successfully added the item to the cart !!!</h2>
+    <a href="{% url 'ecomapp:mycart' %}" class="btn btn-sm btn-success" style="margin-left: 500px;margin-top: 10px;">GO TO CART </a>
+</div>
+{% endblock %}

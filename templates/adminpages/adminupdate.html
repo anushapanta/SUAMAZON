@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class="row">
+
+    <div class="col-sm-8 offset-2">
+        
+    <h4 class=" text-center alter alert-info">ADMIN PROFILE UPDATE</h4>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{user_form|crispy}}
+        {{child_form|crispy}}
+
+        <input type="submit" class="btn btn-success" value="Update">
+    </form>
+    </div>
+</div>
+
+
+{% endblock content %}
